@@ -1,0 +1,28 @@
+services:
+  # The FastAPI Backend
+  - type: web
+    name: rag-backend
+    env: docker
+    region: ohio
+    plan: free
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false # Set this manually in the Render dashboard
+
+  # The Next.js Frontend
+  - type: web
+    name: rag-frontend
+    env: node
+    region: ohio
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: rag-backend
+          envVarKey: RENDER_EXTERNAL_URL
