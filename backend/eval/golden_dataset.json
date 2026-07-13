@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What is Retrieval-Augmented Generation?",
+    "ground_truth": "Retrieval-augmented generation (RAG) is a technique that enhances large language models by retrieving relevant information from a knowledge base to ground the model's responses, improving accuracy and reducing hallucinations."
+  },
+  {
+    "question": "How does a Vector Database differ from a traditional relational database?",
+    "ground_truth": "A vector database stores data as high-dimensional vectors, allowing for semantic similarity searches rather than exact keyword matches used by traditional relational databases."
+  },
+  {
+    "question": "What is the purpose of prompt engineering?",
+    "ground_truth": "Prompt engineering is the process of designing and optimizing input text (prompts) to effectively guide a large language model to produce desired outputs."
+  }
+]
