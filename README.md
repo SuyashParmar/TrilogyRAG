@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 align="center">🧠 Domain Expert AI</h1>
+  <h1 align="center">🧠 TrilogyRAG: Domain Expert AI</h1>
   <h3>A Production-Grade Retrieval-Augmented Generation (RAG) Architecture</h3>
 
   <p>
@@ -15,7 +15,7 @@
 
 ## 🚀 Overview
 
-Domain Expert AI is a full-stack, enterprise-ready RAG application that allows users to upload documents (PDF, TXT, MD, CSV) and interact with them in real-time. It goes far beyond standard LangChain tutorials by implementing a **Two-Stage Retrieval Pipeline**, strict hallucination guardrails, dynamic persona adaptation, and automated ML-Ops evaluations.
+TrilogyRAG (Domain Expert AI) is a full-stack, enterprise-ready RAG application that allows users to upload documents (PDF, TXT, MD, CSV) and interact with them in real-time. It goes far beyond standard LangChain tutorials by implementing a **Two-Stage Retrieval Pipeline**, strict hallucination guardrails, dynamic persona adaptation, and automated ML-Ops evaluations.
 
 It is powered by Meta's **Llama-3.3-70B** running on **Groq** for blazing-fast inference, a **FastAPI** backend, and a premium glassmorphic **Next.js** frontend.
 
@@ -51,8 +51,8 @@ Includes an offline evaluation pipeline powered by the `ragas` framework. A cust
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/domain-expert-ai.git
-cd domain-expert-ai
+git clone https://github.com/SuyashParmar/TrilogyRAG.git
+cd TrilogyRAG
 ```
 
 ### 2. Backend Setup
