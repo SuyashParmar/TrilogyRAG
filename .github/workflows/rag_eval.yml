@@ -1,0 +1,30 @@
+name: RAG Evaluation Pipeline
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+        cache: "pip"
+
+    - name: Install dependencies
+      run: |
+        cd backend
+        pip install -r requirements.txt
+
+    - name: Run RAGas Evaluation
+      env:
+        GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # Required if using default Ragas judging models
+      run: |
+        cd backend
+        python eval/evaluate.py
