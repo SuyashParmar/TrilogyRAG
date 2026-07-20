@@ -120,8 +120,9 @@ export default function Home() {
             <div className="inline-block px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md mb-2 animate-pulse-slow">
               <span className={`text-xs font-bold tracking-wider uppercase ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>Next-Gen RAG Architecture</span>
             </div>
-            <h1 className={`text-5xl md:text-7xl font-extrabold tracking-tighter drop-shadow-sm ${isDark ? "text-white" : "text-emerald-950"}`}>
-              Domain <span className="bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">Expert AI</span>
+            <h1 className={`text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter drop-shadow-sm ${isDark ? "text-white" : "text-emerald-950"}`}>
+              TrilogyRAG<span className="hidden md:inline">:</span> <br className="md:hidden" />
+              <span className="bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">Domain Expert AI</span>
             </h1>
             <p className={`text-lg md:text-xl max-w-2xl mx-auto font-medium ${isDark ? "text-neutral-400" : "text-emerald-800/70"}`}>
               Upload your documents and interact with a specialized neural engine tailored for Legal, Medical, or General analysis.
