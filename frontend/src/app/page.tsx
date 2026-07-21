@@ -237,8 +237,8 @@ export default function Home() {
           </div>
 
           {/* Epic Search Bar */}
-          <form onSubmit={handleSearch} className="relative max-w-3xl mx-auto group z-20">
-            <div className={`absolute -inset-1 rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 ${
+          <form onSubmit={handleSearch} className="relative max-w-3xl mx-auto z-20">
+            <div className={`absolute -inset-1 rounded-[2rem] blur opacity-25 transition duration-1000 ${
               isDark ? "bg-gradient-to-r from-emerald-600 to-teal-600" : "bg-gradient-to-r from-emerald-400 to-green-300"
             }`}></div>
             <div className="relative">
