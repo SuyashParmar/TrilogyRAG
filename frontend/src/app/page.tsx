@@ -8,6 +8,12 @@ interface Source {
   content_preview: string;
 }
 
+const exampleQuestions: Record<string, string[]> = {
+  general: ["What is machine learning?", "Explain quantum computing like I'm 5.", "How does a vector database work?"],
+  medical: ["I am facing coughing and fever, suggest medicine", "What are the side effects of Ibuprofen?", "Explain my blood test results."],
+  legal: ["Give me a bail template.", "What is a non-disclosure agreement?", "Explain the Fair Use doctrine."]
+};
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [mode, setMode] = useState("general");
@@ -234,6 +240,24 @@ export default function Home() {
                   "Generate"
                 )}
               </button>
+            </div>
+            {/* Example Questions */}
+            <div className="flex flex-wrap gap-2 justify-center mt-4 animate-fade-in-up">
+              <span className={`text-sm font-medium my-auto mr-2 ${isDark ? "text-neutral-400" : "text-emerald-700/60"}`}>Try asking:</span>
+              {exampleQuestions[mode]?.map((q) => (
+                <button 
+                  key={q}
+                  type="button"
+                  onClick={() => setQuery(q)}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                    isDark 
+                      ? "border-emerald-500/20 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300" 
+                      : "border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/15 text-emerald-700 hover:shadow-sm"
+                  }`}
+                >
+                  {q}
+                </button>
+              ))}
             </div>
           </form>
 
