@@ -249,16 +249,17 @@ export default function Home() {
                 onKeyDown={handleKeyDown}
                 placeholder={`Ask a ${mode} question...`}
                 rows={1}
-                className={`w-full backdrop-blur-xl border rounded-[2rem] py-5 pl-8 pr-36 text-lg font-medium focus:outline-none transition-all duration-300 shadow-2xl resize-none overflow-hidden ${
+                className={`w-full backdrop-blur-xl border rounded-[2rem] py-4 md:py-5 pl-6 md:pl-8 pr-28 md:pr-36 text-base md:text-lg font-medium focus:outline-none transition-all duration-300 shadow-2xl resize-none overflow-hidden ${
                   isDark 
                     ? "bg-neutral-900/80 border-white/10 text-white placeholder-neutral-500 focus:border-emerald-500/50" 
                     : "bg-white/80 border-white text-emerald-950 placeholder-emerald-400 focus:border-emerald-300"
                 }`}
+                style={{ height: 'auto' }}
               />
               <button
                 type="submit"
                 disabled={loading}
-                className={`absolute right-2 top-2 bottom-2 px-8 rounded-full font-bold tracking-wide transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${
+                className={`absolute right-2 top-2 bottom-2 px-4 md:px-8 rounded-full text-sm md:text-base font-bold tracking-wide transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 ${
                   isDark 
                     ? "bg-emerald-500 text-white hover:bg-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]" 
                     : "bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/40 hover:shadow-emerald-500/60"
@@ -299,13 +300,13 @@ export default function Home() {
 
           {/* Results Area */}
           {answer && (
-            <div className={`backdrop-blur-2xl border rounded-[2rem] p-8 md:p-10 shadow-2xl animate-fade-in-up space-y-8 relative overflow-hidden ${
+            <div className={`backdrop-blur-2xl border rounded-[2rem] p-6 md:p-10 shadow-2xl animate-fade-in-up space-y-6 md:space-y-8 relative overflow-hidden ${
               isDark ? "bg-black/40 border-white/10" : "bg-white/60 border-white shadow-emerald-900/5"
             }`}>
               
               <div className="relative z-10">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className={`text-2xl font-bold flex items-center gap-3 ${isDark ? "text-emerald-400" : "text-emerald-700"}`}>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                  <h2 className={`text-xl md:text-2xl font-bold flex items-center gap-3 ${isDark ? "text-emerald-400" : "text-emerald-700"}`}>
                     <div className={`p-2 rounded-lg ${isDark ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-100 text-emerald-600"}`}>
                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
