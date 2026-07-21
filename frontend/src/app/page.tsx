@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { jsPDF } from "jspdf";
 
 interface Source {
   title: string;
@@ -54,6 +55,23 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const downloadAsTxt = () => {
+    const element = document.createElement("a");
+    const file = new Blob([answer], {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = "TrilogyRAG_Document.txt";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
+  const downloadAsPdf = () => {
+    const doc = new jsPDF();
+    const splitText = doc.splitTextToSize(answer, 180);
+    doc.text(splitText, 15, 20);
+    doc.save("TrilogyRAG_Document.pdf");
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -268,14 +286,24 @@ export default function Home() {
             }`}>
               
               <div className="relative z-10">
-                <h2 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isDark ? "text-emerald-400" : "text-emerald-700"}`}>
-                  <div className={`p-2 rounded-lg ${isDark ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-100 text-emerald-600"}`}>
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className={`text-2xl font-bold flex items-center gap-3 ${isDark ? "text-emerald-400" : "text-emerald-700"}`}>
+                    <div className={`p-2 rounded-lg ${isDark ? "bg-emerald-500/10 text-emerald-400" : "bg-emerald-100 text-emerald-600"}`}>
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    Synthesis Complete
+                  </h2>
+                  <div className="flex gap-2">
+                    <button onClick={downloadAsTxt} className={`text-xs font-bold px-4 py-2 rounded-full border transition-colors ${isDark ? "border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10" : "border-emerald-500/30 text-emerald-600 hover:bg-emerald-50"}`}>
+                      ↓ TXT
+                    </button>
+                    <button onClick={downloadAsPdf} className={`text-xs font-bold px-4 py-2 rounded-full border transition-colors ${isDark ? "border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10" : "border-emerald-500/30 text-emerald-600 hover:bg-emerald-50"}`}>
+                      ↓ PDF
+                    </button>
                   </div>
-                  Synthesis Complete
-                </h2>
+                </div>
                 <div className={`prose max-w-none leading-relaxed text-lg font-medium ${isDark ? "prose-invert text-neutral-300" : "text-emerald-950/80"}`}>
                   {answer.split('\n').map((line, i) => (
                     <p key={i} className="mb-4">{line}</p>
