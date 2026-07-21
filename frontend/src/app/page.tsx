@@ -25,8 +25,24 @@ export default function Home() {
   const [uploadMessage, setUploadMessage] = useState("");
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const isDark = theme === "dark";
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setQuery(e.target.value);
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSearch(e as unknown as React.FormEvent);
+    }
+  };
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -222,16 +238,18 @@ export default function Home() {
 
           {/* Epic Search Bar */}
           <form onSubmit={handleSearch} className="relative max-w-3xl mx-auto group z-20">
-            <div className={`absolute -inset-1 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 ${
+            <div className={`absolute -inset-1 rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 ${
               isDark ? "bg-gradient-to-r from-emerald-600 to-teal-600" : "bg-gradient-to-r from-emerald-400 to-green-300"
             }`}></div>
             <div className="relative">
-              <input
-                type="text"
+              <textarea
+                ref={textareaRef}
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={handleInput}
+                onKeyDown={handleKeyDown}
                 placeholder={`Ask a ${mode} question...`}
-                className={`w-full backdrop-blur-xl border rounded-full py-5 pl-8 pr-36 text-lg font-medium focus:outline-none transition-all duration-300 shadow-2xl ${
+                rows={1}
+                className={`w-full backdrop-blur-xl border rounded-[2rem] py-5 pl-8 pr-36 text-lg font-medium focus:outline-none transition-all duration-300 shadow-2xl resize-none overflow-hidden ${
                   isDark 
                     ? "bg-neutral-900/80 border-white/10 text-white placeholder-neutral-500 focus:border-emerald-500/50" 
                     : "bg-white/80 border-white text-emerald-950 placeholder-emerald-400 focus:border-emerald-300"
